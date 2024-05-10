@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html onselectstart="return false">
+
+<head lang="en">
+  /*onselectstart="return false"*/
+  <meta charset="UTF-8">
+  <title>Love</title>>
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #000;
+      overflow: hidden;
+    }
+
+    #perspective {
+      perspective: 800px;
+    }
+
+    #wrap {
+      width: 120px;
+      /*133:200  4:6  */
+      height: 180px;
+      margin: 0 auto;
+      position: relative;
+
+      /*搭建3D效果必须的两个属性：一个变换风格变3d，一个场景景深800px*/
+      transform-style: preserve-3d;
+      transform: rotateX(-10deg) rotateY(0deg);
+
+    }
+
+    #wrap img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+
+      border-radius: 5px;
+      /*加上圆角*/
+      box-shadow: 0px 0px 10px #fff;
+      /*box-shadow 属性向框添加一个或多个阴影*/
+      -webkit-box-reflect: below 10px -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    #wrap p {
+      width: 1200px;
+      height: 1200px;
+      background: -webkit-radial-gradient(center center, 600px 600px, rgba(244, 23, 234, 0.2), rgba(0, 0, 0, 0));
+      border-radius: 100%;
+      position: absolute;
+      left: 50%;
+      top: 102%;
+      margin-left: -600px;
+      margin-top: -600px;
+      transform: rotateX(90deg);
+    }
+    .div1{
+        padding-top: 10px;
+        padding-bottom: 30px;
+        margin-bottom: 200px;
+        background-color: #fff;
+        color: #000;
+        font-size: 10px;
+        border: #000 2px;
+        height: 300px;
+        width: 270px;
+        
+    }
+
+</style>
+</head>
+<body>
+  <div id="perspective">
+    <div id='wrap'>
+     <img src="网络2302团建照片.png.jpeg" alt="" class="">
+     <img src="网络2302团建照片1.png.jpeg" alt="" class="">
+     <img src="网络2302团建照片2..png.jpeg" alt="" class="">
+     <img src="网络2302团建照片3.png.jpeg" alt="" class="">
+     <img src="网络2302团建照片4.png.jpeg" alt="" class="">
+     <img src="网络2302团建照片5.png.jpeg" alt="" class="">
+     <img src="网络2302团建照片6.png.jpeg" alt="" class="">
+     <img src="网络2302团建照片7.png.jpeg" alt="" class="">
+     <img src="网络2302团建照片8.png.jpeg" alt="" class="">
+     <img src="网络2302团建照片9.png.jpeg" alt="" class="">
+     <img src="网络2302团建照片10.png.jpeg" alt="" class="">
+      <p>
+        
+      </p>
+    </div>
+  </div>
+    <div class="div1">
+        <form class="form1" action="">
+            
+                <p>上周，我们班组织了一次团建烧烤活动，这次活动让我印象深刻，收获颇丰。</p>
+                <p>活动当天，我们早早地来到了预定的烧烤场地。同学们热情高涨，纷纷投入到准备工作中。有人忙着搬运食材和工具，有人忙着搭建烧烤架，还有人负责生火。大家齐心协力，很快就将现场布置得井井有条。
+                <p>烧烤开始了，我们围坐在火堆旁，一边烤着美味的食物，一边畅聊生活趣事。空气中弥漫着烤肉的香气，还有同学们的欢声笑语。这一刻，我感受到了班级大家庭的温暖和融洽。</p>
+                <p>在烧烤过程中，我们也不忘进行一些有趣的互动游戏。这些游戏不仅增进了同学之间的友谊，还让我们更加了解彼此。在游戏中，我们互相支持、互相帮助，共同克服了一个个难关。
+                通过这次活动，我深刻感受到了团队合作的力量。只有大家齐心协力，才能将活动举办得如此成功。同时，我也更加珍惜与同学们相处的时光，这段时光充满了欢笑与感动。</p>
+                <p>回顾这次班级团建烧烤活动，我不仅收获了美食和快乐，还收获了友情和成长。我相信，在未来的日子里，我们班级会更加团结、更加和谐，共同创造更多美好的回忆。
+                总的来说，这次班级团建烧烤活动是一次难忘的经历。
+                它让我更加珍惜与同学们的友谊，也让我更加热爱这个充满活力和温暖的班集体。我期待未来还能有更多这样的活动，让我们在忙碌的学习生活中，也能感受到班级大家庭的温暖和力量。</p>
+            
+        </form>
+    </div>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      var oWrap = document.getElementById('wrap');
+      var oImg = oWrap.getElementsByTagName('img');
+      var oImgLength = oImg.length;
+      var Deg = 360 / oImgLength;
+      var nowX, nowY, lastX, lastY, minusX = 0, minusY = 0;
+      var roY = 0, roX = -10;
+      var timer;
+
+      for (var i = 0; i < oImgLength; i++) {
+        oImg[i].style.transform = 'rotateY(' + i * Deg + 'deg) translateZ(350px)';
+        oImg[i].style.transition = 'transform 1s ' + (oImgLength - 1 - i) * 0.1 + 's';
+
+      }
+
+      mTop();
+
+      window.onresize = mTop;
+
+      function mTop() {
+        var wH = document.documentElement.clientHeight;
+        oWrap.style.marginTop = wH / 2 - 180 + 'px';
+      }
+
+      // 拖拽：三个事件-按下 移动 抬起
+      //按下
+      document.onmousedown = function (ev) {
+        ev = ev || window.event;
+
+        //鼠标按下的时候，给前一点坐标赋值，为了避免第一次相减的时候出错
+        lastX = ev.clientX;
+        lastY = ev.clientY;
+
+        //移动
+        this.onmousemove = function (ev) {
+          ev = ev || window.event;
+
+          clearInterval(timer);
+
+          nowX = ev.clientX; // clientX 鼠标距离页面左边的距离
+          nowY = ev.clientY; // clientY ………………………………顶部………………
+
+          //当前坐标和前一点坐标差值
+          minusX = nowX - lastX;
+          minusY = nowY - lastY;
+
+          //更新wrap的旋转角度，拖拽越快-> minus变化大 -> roY变化大 -> 旋转快
+          roY += minusX * 0.2; // roY = roY + minusX*0.2;
+          roX -= minusY * 0.1;
+
+          oWrap.style.transform = 'rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)';
+
+          /*
+          //生成div，让div跟着鼠标动
+          var oDiv = document.createElement('div');
+          oDiv.style.cssText = 'width:5px;height:5px;background:red;position:fixed;left:'+nowX+'px;top:'+nowY+'px';
+          this.body.appendChild(oDiv);
+          */
+
+          //前一点的坐标
+          lastX = nowX;
+          lastY = nowY;
+
+        }
+        //抬起
+        this.onmouseup = function () {
+          this.onmousemove = null;
+          timer = setInterval(function () {
+            minusX *= 0.95;
+            minusY *= 0.95;
+            roY += minusX * 0.2; // roY = roY + minusX*0.2;
+            roX -= minusY * 0.1;
+            oWrap.style.transform = 'rotateX(' + roX + 'deg) rotateY(' + roY + 'deg)';
+
+            if (Math.abs(minusX) < 0.1 && Math.abs(minusY) < 0.1) {
+              clearInterval(timer);
+            }
+            console.log(minusX);
+          }, 13);
+        }
+        return false;
+      }
+    }
+</script>
+</body>
+</html>
